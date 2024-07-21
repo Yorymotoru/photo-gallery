@@ -1,0 +1,24 @@
+/* тело */
+	img { display: block; width: 100%; }
+	audio { display: block; width: 96%; }
+	a { text-decoration: none; color: #111; }
+	h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display'; font-weight: normal; letter-spacing: 1px; } 
+	body { font-family: 'Open Sans', arial, sans-serif; font-size: 14px; line-height: 1; color: #272727; background: #f7f7f7;	}
+	.container { margin: 0 auto; width: 100%; max-width: 1060px; padding: 0 15px; } 
+	.container2 { margin: 0 auto; width: 100%; max-width: 960px; padding: 0 15px; }
+/* шапка */
+	header:after, .container:after, footer:after, .widget-posts-list li:after, 
+	#subscribe:after { content: ""; display: table; clear: both;} 
+	header { width: 100%; background: white; box-shadow: 3px 3px 1px rgba(0,0,0,.05); padding: 15px 0; margin-bottom: 30px; position: relative; } 
+	nav { width: 100%; } 
+/* логотип */ 
+	.logo { display: block; float: left; } 
+	.logo span { color: white; display: inline-block; width: 30px; height: 30px; line-height: 30px; border-radius: 20%; margin: 18px 0; text-align: center; text-shadow: 2px 2px 1px rgba(0,0,0,.4); }
+	.logo span:nth-child(odd) { background: #e28b00; } 
+	.logo span:nth-child(even) { background: #ffa000; }
+/* меню */
+	#menu { float: right; } 
+	#menu li { display: inline-block; margin-right: 20px; } 
+	#menu a { color: #111; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; display: block; line-height: 40px; } 
+	#menu a:hover { color: #EF5A42; } 
+	#menu li:last-child { margin-right: 10px; }
