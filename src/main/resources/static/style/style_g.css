@@ -1,64 +1,73 @@
 
 a {
-	outline: none;
+    outline: none;
 }
+
 .bodycont.container {
     width: 100%;
-	max-width: 1120px;
-	padding: 0 10px;
-	margin: 0 auto;
+    max-width: 1120px;
+    padding: 0 10px;
+    margin: 0 auto;
 }
+
 .row {
-	margin: 0 -10px;
+    margin: 0 -10px;
 }
 
 /******************************************************************************************/
 /* PORTFOLIO GRID                                                                         */
 /******************************************************************************************/
 .grid {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .grid-item {
-	width: 100%;
-	padding: 6px;	
+    width: 100%;
+    padding: 6px;
 }
+
 .grid-item a {
-	display: block;
-	padding: 3px;
-	background: rgba(255, 210, 130, 0.3);
-	box-shadow: 3px 3px 1px rgba(0,0,0,.1);
+    display: block;
+    padding: 3px;
+    background: rgba(255, 210, 130, 0.3);
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, .1);
 }
+
 .grid-item img {
-	display: block;
-	width: 100%;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
-	transition: .5s ease-in-out;
+    display: block;
+    width: 100%;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    transition: .5s ease-in-out;
 }
+
 .grid-item a:hover img {
-	-webkit-filter: grayscale(0%);
-	filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
 }
 
 /******************************************************************************************/
 /* MEDIA                                                                                  */
 /******************************************************************************************/
 @media (min-width: 480px) {
-	.grid {
-		display: flex;
-	}
-	.grid-item {
-		width: 49%;
-	}
+    .grid {
+        display: flex;
+    }
+
+    .grid-item {
+        width: 49%;
+    }
 }
+
 @media (min-width: 768px) {
-	.grid-item {
-		width: 33%;
-	}
+    .grid-item {
+        width: 33%;
+    }
 }
+
 @media (max-width: 768px) {
-	.grid-item img {
-		-webkit-filter: grayscale(0%);
-		filter: grayscale(0%);
-	}
+    .grid-item img {
+        -webkit-filter: grayscale(0%);
+        filter: grayscale(0%);
+    }
 }

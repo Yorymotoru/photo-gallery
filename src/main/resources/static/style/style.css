@@ -1,183 +1,295 @@
-		/* тело */
-img { 
-	display: block; 
-	width: 100%; 
-	}
-audio { 
-	display: block; 
-	width: 100%; 
-	}
-a { 
-	text-decoration: none; 
-	color: #111; 
+/* тело */
+img {
+    display: block;
+    width: 100%;
 }
+
+audio {
+    display: block;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #111;
+}
+
 ul {
-	list-style: none;
-	}
-h1, h2, h3, h4, h5, h6 { 
-	font-family: 'Playfair Display'; 
-	font-weight: normal; 
-	letter-spacing: 1px; 
-	} 
-body { 
-	font-family: 'Open Sans', arial, sans-serif; 
-	font-size: 14px; 
-	line-height: 1;
-	color: #272727; 
-	background: url(https://html5book.ru/wp-content/uploads/2015/05/background1.png); 
-	}
-.container_head { 
-	margin: 0 auto; 
-	width: 100%; 
-	max-width: 1060px; 
-	padding: 0 0px; 
-	opacity: 1; 
-	} 
-.bodycont { 
-	margin: 0 auto; 
-	width: calc(-10px + 100%); 
-	max-width: 960px; 
-	padding-left:5px; 
-	padding-right:5px; 
-	flex: 1 0 auto; 
-	text-indent: 15px;
-	}
-.content { 
-	flex: 1 0 auto; 
-	}
-.sp_notify_prompt { 
-	text-decoration: none; 
-	color: #bf8151; 
-	}
-p1 { 
-	font-size: 10px; 
-	}
-	
-	html,body { height: calc(100% - 5px); }
-	.wrapper { display: flex; flex-direction: column; height: 100%; width: 100%}
-		
-		/* шапка */
-	header:after, .container:after, footer:after, .widget-posts-list li:after, #subscribe:after { content: ""; display: table; clear: both; } 
-	header { width: calc(100% - 12px);; background-color: rgba(255, 210, 130, 0.3); box-shadow: 3px 3px 1px rgba(0,0,0,.1); padding: 15px 3px; margin: 0 5px; margin-bottom: 30px; } 
-	nav { width: 100%; } 
-			/* логотип */ 
-		.logo { display: block; float: left; margin-left: 5px} 
-		.logo span { color: white; display: inline-block; width: 30px; height: 30px; line-height: 30px; border-radius: 20%; margin: 5px 0; text-align: center; text-shadow: 2px 2px 1px rgba(0,0,0,.4); }
-		.logo span:nth-child(odd) { background: #e28b00; } 
-		.logo span:nth-child(even) { background: #ffa000; }
-			/* меню */
-		#menu { float: right; } 
-		#menu li { display: inline-block; margin-right: 10px; } 
-		#menu a { color: #111; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; display: block; line-height: 40px; } 
-		#menu a:hover { color: #EF5A42; } 
-		#menu li:last-child { margin-right: 10px; }
-	
-		/* футер */
-	footer { width: calc(100% - 12px); background-color: rgba(255, 210, 130, 0.3); box-shadow: 3px 3px 1px rgba(0,0,0,.1); height: 56px; margin: 0 5px; flex: 0 0 auto; }
-	small { text-indent: 10px; }
-	.footcont { padding: 0 15px; }
-	.telegram { float: right; text-align: right; }
-	.mail { float: left; }
-	
-	*, *:after, *:before {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	transition: .5s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
-	}
-	
-		/* кнопка переключения меню, появляющаяся при ширине 768px */
-	.nav-toggle {
-	border-radius: 20%;
-	display: none;
-	position: relative;
-	float: right;
-	width: 30px;
-	height: 30px;
-	margin-left: 0px;
-	margin-right: 5px;
-	margin-top: 5px;
-	background: #ffa000;
-	cursor: pointer;
-	}
-	.nav-toggle span {
-	display: block;
-	position: absolute;
-	top: 14px;
-	left: 5px;
-	right: 5px;
-	height: 2px;
-	background: white;
-	}
-	.nav-toggle span:before, .nav-toggle span:after {
-	content: "";
-	position: absolute;
-	display: block;
-	left: 0;
-	width: 100%;
-	height: 2px;
-	background: white;
-	}
-	.nav-toggle span:before {
-	top: -8px;
-	}
-	.nav-toggle span:after {
-	bottom: -8px;
-	}
-		/* класс, который будет добавлен в верхнему меню при нажатии на кнопку и покажет скрытое меню*/
-	#menu.active {
-	max-height: 123px;
-	}
-	
-	@media (max-width: 768px) {
-	/* показываем кнопку для переключения верхней навигации */
-	.nav-toggle {
-	display: block;
-	}
-	header {
-	padding: 10px 0;
-	}
-	/* скрываем верхнее меню, отменяем обтекание, позиционируем его, сместив на высоту шапки сайта */ 
-	#menu {
-	max-height: 0;
-	background: rgba(255, 255, 255, 0.95);
-	float: none;
-	position: absolute;
-	overflow: hidden;
-	top: 63px;
-	right: 15px;
-	left: 10px;
-	margin: 0;
-	padding: 0;
-	z-index: 3;
-	}
-	/* делаем элементы списка блочными, чтобы они располагались друг под другом */
-	#menu li {
-	display: block;
-	padding-left: 15px;
-	border-bottom: 1px solid #EBEBE3;
-	margin-right: 0;
-	}
-	/* отменяем обтекание левой и правой колонок, устанавливаем им ширину 100%*/
-	.posts-list, aside {
-	width: 100%;
-	float: none;
-	}
-	.widget-post-title {
-	font-size: 1.5em;
-	} }
-	@media (max-width: 480px) {
-	/* выравниванием логотип по центру */
-	nav {
-	text-align: center;
-	}
-	/* позиционируем меню на увеличившуюся высоту шапки */
-	#menu {
-	top: 60px;
-	} }
-	@media (max-width: 510px) {
-	p1 { float: right; }
-	}
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', ui-serif;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+body {
+    font-family: 'Open Sans', arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    color: #272727;
+    background: url(https://html5book.ru/wp-content/uploads/2015/05/background1.png);
+}
+
+.container_head {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1060px;
+    padding: 0 0;
+    opacity: 1;
+}
+
+.bodycont {
+    margin: 0 auto;
+    width: calc(-10px + 100%);
+    max-width: 1280px;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex: 1 0 auto;
+    text-indent: 15px;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.sp_notify_prompt {
+    text-decoration: none;
+    color: #bf8151;
+}
+
+p1 {
+    font-size: 10px;
+}
+
+html, body {
+    height: calc(100% - 5px);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%
+}
+
+/* шапка */
+header:after, .container:after, footer:after, .widget-posts-list li:after, #subscribe:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+header {
+    width: calc(100% - 12px);;
+    background-color: rgba(255, 210, 130, 0.3);
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, .1);
+    padding: 15px 3px;
+    margin: 0 5px 30px;
+}
+
+nav {
+    width: 100%;
+}
+
+/* логотип */
+.logo {
+    display: block;
+    float: left;
+    margin-left: 5px
+}
+
+.logo span {
+    color: white;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 20%;
+    margin: 5px 0;
+    text-align: center;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, .4);
+}
+
+.logo span:nth-child(odd) {
+    background: #e28b00;
+}
+
+.logo span:nth-child(even) {
+    background: #ffa000;
+}
+
+/* меню */
+#menu {
+    float: right;
+}
+
+#menu li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#menu a {
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    display: block;
+    line-height: 40px;
+}
+
+#menu a:hover {
+    color: #EF5A42;
+}
+
+#menu li:last-child {
+    margin-right: 10px;
+}
+
+/* футер */
+footer {
+    width: calc(100% - 12px);
+    background-color: rgba(255, 210, 130, 0.3);
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, .1);
+    height: 56px;
+    margin: 0 5px;
+    flex: 0 0 auto;
+}
+
+small {
+    text-indent: 10px;
+}
+
+.footcont {
+    padding: 0 15px;
+}
+
+.telegram {
+    float: right;
+    text-align: right;
+}
+
+.mail {
+    float: left;
+}
+
+*, *:after, *:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: .5s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
+}
+
+/* кнопка переключения меню, появляющаяся при ширине 768px */
+.nav-toggle {
+    border-radius: 20%;
+    display: none;
+    position: relative;
+    float: right;
+    width: 30px;
+    height: 30px;
+    margin-left: 0;
+    margin-right: 5px;
+    margin-top: 5px;
+    background: #ffa000;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 5px;
+    right: 5px;
+    height: 2px;
+    background: white;
+}
+
+.nav-toggle span:before, .nav-toggle span:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+}
+
+.nav-toggle span:before {
+    top: -8px;
+}
+
+.nav-toggle span:after {
+    bottom: -8px;
+}
+
+/* класс, который будет добавлен в верхнему меню при нажатии на кнопку и покажет скрытое меню*/
+#menu.active {
+    max-height: 123px;
+}
+
+@media (max-width: 768px) {
+    /* показываем кнопку для переключения верхней навигации */
+    .nav-toggle {
+        display: block;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    /* скрываем верхнее меню, отменяем обтекание, позиционируем его, сместив на высоту шапки сайта */
+    #menu {
+        max-height: 0;
+        background: rgba(255, 255, 255, 0.95);
+        float: none;
+        position: absolute;
+        overflow: hidden;
+        top: 63px;
+        right: 15px;
+        left: 10px;
+        margin: 0;
+        padding: 0;
+        z-index: 3;
+    }
+
+    /* делаем элементы списка блочными, чтобы они располагались друг под другом */
+    #menu li {
+        display: block;
+        padding-left: 15px;
+        border-bottom: 1px solid #EBEBE3;
+        margin-right: 0;
+    }
+
+    /* отменяем обтекание левой и правой колонок, устанавливаем им ширину 100%*/
+    .posts-list, aside {
+        width: 100%;
+        float: none;
+    }
+
+    .widget-post-title {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* выравниванием логотип по центру */
+    nav {
+        text-align: center;
+    }
+
+    /* позиционируем меню на увеличившуюся высоту шапки */
+    #menu {
+        top: 60px;
+    }
+}
+
+@media (max-width: 510px) {
+    p1 {
+        float: right;
+    }
+}
 
 
 

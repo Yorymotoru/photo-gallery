@@ -21,10 +21,21 @@ class OneDriveIntegration {
                 .build()
     }
 
-    def getListOfImages() {
+    def getListOfMainImages() {
         def images = webClient
                 .get()
                 .uri(String.join("", "/v1.0/shares/", Constants.GALLERY_FOLDER_ID, "/root?expand=children"))
+                .retrieve()
+                .bodyToMono(OneDriveResponse.class) //TODO: Надо попробовать сгенерировать сокращённую версию
+                .block()
+
+        return images.children.contentDownloadUrl
+    }
+
+    def getListOfWallpapers() {
+        def images = webClient
+                .get()
+                .uri(String.join("", "/v1.0/shares/", Constants.WALLPAPER_FOLDER_ID, "/root?expand=children"))
                 .retrieve()
                 .bodyToMono(OneDriveResponse.class) //TODO: Надо попробовать сгенерировать сокращённую версию
                 .block()
