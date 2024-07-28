@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'ru.yorymoto'
-version = '0.0.3-SNAPSHOT'
+version = '0.0.4-SNAPSHOT'
 mainClassName = 'ru.yorymoto.photogallery.PhotoGalleryApplication'
 
 java {
@@ -34,6 +34,7 @@ dependencies {
     implementation 'org.thymeleaf:thymeleaf'
     implementation 'org.thymeleaf:thymeleaf-spring4:3.0.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.data:spring-data-commons'
     compileOnly 'org.projectlombok:lombok'
 //    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

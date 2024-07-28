@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex"/>
+    <meta name="viewport" content="wedth= devise-wedth, initial-scale=1">
+
+    <title>Yorymotoru's Gallery</title>
+
+    <meta property="og:title" content="Yorymotoru's Gallery"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="//gallery.yorymoto.ru/"/>
+    <meta property="og:image" content="//images/favicon.ico"/>
+
+    <div th:replace="~{fragments/head_links.html}"></div>
+    <link href="style/masonry.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <header th:replace="~{fragments/header.html}"></header>
+        <div class="bodycont">
+            Фоточки с моих прогулок <br><br>
+            <div class="main">
+                <div class="container">
+                    <div class="row">
+                        <div class="grid">
+                            <div class="grid-item" th:each="img: ${listImages}">
+                                <a target=_blank class="grid-link" th:href="${img}">
+                                    <img class="grid-img" th:src="${img}" alt=""/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="pagination">
+                        <a class='pagination__next' th:href='${"/" + (listImages.nextPageable().pageNumber + 1)}'></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments/footer.html}"></footer>
+</div>
+
+<script src="js/infinite-scroll.pkgd.min.js"></script>
+<script>
+    let elem = document.querySelector('.grid');
+    let infScroll = new InfiniteScroll( elem, {
+        // options
+        path: '.pagination__next',
+        append: '.grid-item',
+        history: false
+    });
+    infScroll.loadNextPage();
+</script>
+
+<script>
+    $('.nav-toggle').on('click', function () {
+        $('#menu').toggleClass('active');
+    });
+</script>
+
+
+</body>
+</html>
