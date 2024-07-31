@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex"/>
-    <meta name="viewport" content="wedth= devise-wedth, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Yorymotoru's Gallery</title>
 
@@ -13,7 +13,7 @@
     <meta property="og:image" content="//images/favicon.ico"/>
 
     <div th:replace="~{fragments/head_links.html}"></div>
-    <link href="style/masonry.css" rel="stylesheet">
+    <link href="style/my-masonry.css" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
@@ -25,7 +25,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="grid">
-                            <div class="grid-item" th:each="img: ${listImages}">
+                            <div class="grid-item" th:each="img: ${listImages}" th:data-height="${img.height}"
+                                 th:data-width="${img.width}">
                                 <a target=_blank class="grid-link" th:href="${img.href}">
                                     <img class="grid-img" th:src="${img.href}" alt=""/>
                                 </a>
@@ -45,15 +46,19 @@
 </div>
 
 <script src="js/infinite-scroll.pkgd.min.js"></script>
+<script src="js/my-masonry.js"></script>
+
 <script>
-    let elem = document.querySelector('.grid');
-    let infScroll = new InfiniteScroll( elem, {
+    myMasonry();
+    window.onresize = myMasonry.resized;
+
+    new InfiniteScroll(document.querySelector('.grid'), {
         // options
         path: '.pagination__next',
         append: '.grid-item',
-        history: false
+        history: true,
+        outlayer: myMasonry
     });
-    infScroll.loadNextPage();
 </script>
 
 <script>

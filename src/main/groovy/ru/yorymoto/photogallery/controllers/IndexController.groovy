@@ -29,7 +29,7 @@ class IndexController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     index(Model model) {
         def currentPage = 1
-        def pageSize = 6
+        def pageSize = 12
 
         Page<ImageForPage> galleryPage = pageableOneDriveService.findPaginated(PageRequest.of(currentPage - 1, pageSize))
 
@@ -68,7 +68,7 @@ class IndexController {
             @PathVariable("page") Optional<Integer> page
     ) {
         def currentPage = page.orElse(1)
-        def pageSize = 6
+        def pageSize = 12
 
         Page<ImageForPage> galleryPage = pageableOneDriveService.findPaginated(PageRequest.of(currentPage - 1, pageSize))
 
