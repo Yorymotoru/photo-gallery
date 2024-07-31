@@ -9,17 +9,21 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.thymeleaf.context.LazyContextVariable
+import ru.yorymoto.photogallery.model.ImageForPage
 import ru.yorymoto.photogallery.model.OneDriveResponse
 import ru.yorymoto.photogallery.service.OneDriveIntegration
+import ru.yorymoto.photogallery.service.PageableOneDriveService
 
 @Controller
 class IndexController {
 
     OneDriveIntegration oneDriveIntegration
+    PageableOneDriveService pageableOneDriveService
 
     @Autowired
-    IndexController(OneDriveIntegration oneDriveIntegration) {
+    IndexController(OneDriveIntegration oneDriveIntegration, PageableOneDriveService pageableOneDriveService) {
         this.oneDriveIntegration = oneDriveIntegration
+        this.pageableOneDriveService = pageableOneDriveService
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -27,7 +31,7 @@ class IndexController {
         def currentPage = 1
         def pageSize = 6
 
-        Page<String> galleryPage = oneDriveIntegration.findPaginated(PageRequest.of(currentPage - 1, pageSize))
+        Page<ImageForPage> galleryPage = pageableOneDriveService.findPaginated(PageRequest.of(currentPage - 1, pageSize))
 
         model.addAttribute("listImages", galleryPage)
 
@@ -58,7 +62,7 @@ class IndexController {
         return "gallery"
     }
 
-    @RequestMapping(value = "/{page}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{page}", method = RequestMethod.GET) //TODO: Гетается пустая страница в конце
     indexPaginated(
             Model model,
             @PathVariable("page") Optional<Integer> page
@@ -66,7 +70,7 @@ class IndexController {
         def currentPage = page.orElse(1)
         def pageSize = 6
 
-        Page<String> galleryPage = oneDriveIntegration.findPaginated(PageRequest.of(currentPage - 1, pageSize))
+        Page<ImageForPage> galleryPage = pageableOneDriveService.findPaginated(PageRequest.of(currentPage - 1, pageSize))
 
         model.addAttribute("listImages", galleryPage)
 

@@ -112,7 +112,7 @@ class Child {
     File file
     FileSystemInfo fileSystemInfo
     Reactions reactions
-    Image image
+    ImageForPage image
     Photo photo
     Rating rating
 }

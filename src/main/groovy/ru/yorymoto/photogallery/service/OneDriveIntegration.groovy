@@ -1,21 +1,20 @@
 package ru.yorymoto.photogallery.service
 
 import org.springframework.cache.annotation.Cacheable
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageImpl
-import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-
 import ru.yorymoto.photogallery.config.Constants
+import ru.yorymoto.photogallery.model.ImageForPage
 import ru.yorymoto.photogallery.model.OneDriveResponse
+
+import java.time.format.DateTimeFormatter
 
 @Service
 class OneDriveIntegration {
     private final WebClient webClient
+    private final DateTimeFormatter f = DateTimeFormatter.ofPattern(Constants.TIME_PATTERN)
 
     OneDriveIntegration() {
         this.webClient = WebClient.builder()
@@ -35,7 +34,19 @@ class OneDriveIntegration {
                 .bodyToMono(OneDriveResponse.class) //TODO: Надо попробовать сгенерировать сокращённую версию
                 .block()
 
-        return images.children.contentDownloadUrl
+        def out = images.children.collect { it ->
+            new ImageForPage(
+                    href: it.contentDownloadUrl,
+                    takenDateTime: Date.parse(
+                            Constants.TIME_PATTERN,
+                            (it.photo.takenDateTime ?: it.createdDateTime).substring(0, 20)
+                    ).getTime(),
+                    height: it.image.height,
+                    width: it.image.width
+            )
+        }
+
+        return out
     }
 
     def getListOfWallpapers() {
@@ -47,23 +58,6 @@ class OneDriveIntegration {
                 .block()
 
         return images.children.contentDownloadUrl
-    }
-
-    Page<String> findPaginated(Pageable pageable) {
-        int pageSize = pageable.getPageSize()
-        int currentPage = pageable.getPageNumber()
-        int startItem = currentPage * pageSize
-        List<String> list
-        def images = getListOfMainImages()
-
-        if (images.size() < startItem) {
-            list = Collections.emptyList()
-        } else {
-            int toIndex = Math.min(startItem + pageSize, images.size())
-            list = images.subList(startItem, toIndex)
-        }
-
-        new PageImpl<String>(list, PageRequest.of(currentPage, pageSize), images.size())
     }
 
 }
