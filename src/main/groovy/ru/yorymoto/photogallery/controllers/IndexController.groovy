@@ -8,6 +8,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RequestParam
 import org.thymeleaf.context.LazyContextVariable
 import ru.yorymoto.photogallery.model.ImageForPage
 import ru.yorymoto.photogallery.model.OneDriveResponse
@@ -62,7 +63,8 @@ class IndexController {
         return "gallery"
     }
 
-    @RequestMapping(value = "/{page}", method = RequestMethod.GET) //TODO: Гетается пустая страница в конце
+    @RequestMapping(value = "/{page}", method = RequestMethod.GET)
+    //TODO: Гетается пустая страница в конце
     indexPaginated(
             Model model,
             @PathVariable("page") Optional<Integer> page
@@ -75,6 +77,12 @@ class IndexController {
         model.addAttribute("listImages", galleryPage)
 
         return "gallery_infinity_load"
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    view(Model model, @RequestParam("name") String name) {
+        model.addAttribute("image", pageableOneDriveService.getImage(name))
+        return "gallery_view_minimal"
     }
 
 }

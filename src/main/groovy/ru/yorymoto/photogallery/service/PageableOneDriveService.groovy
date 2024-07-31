@@ -32,4 +32,10 @@ public class PageableOneDriveService {
 
         new PageImpl<ImageForPage>(list, PageRequest.of(currentPage, pageSize), images.size())
     }
+
+    def getImage(String name) {
+        def images = oneDriveIntegration.getListOfMainImages()
+
+        return images.find(it -> it.name == name)
+    }
 }

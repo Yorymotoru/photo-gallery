@@ -28,7 +28,7 @@
                         <div class="grid">
                             <div class="grid-item" th:each="img: ${listImages}" th:data-height="${img.height}"
                                  th:data-width="${img.width}">
-                                <a target=_blank class="grid-link" th:href="${img.href}">
+                                <a target=_blank class="grid-link" th:href="${'/view?name=' + img.name}">
                                     <img class="grid-img" th:src="${img.thumbnail}" alt=""/>
                                 </a>
                             </div>

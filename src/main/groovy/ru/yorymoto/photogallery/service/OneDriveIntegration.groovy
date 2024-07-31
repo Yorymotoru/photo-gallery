@@ -43,6 +43,7 @@ class OneDriveIntegration {
 
         def out = images.children.collect { it ->
             new ImageForPage(
+                    name: it.name,
                     href: it.contentDownloadUrl,
                     takenDateTime: Date.parse(
                             Constants.TIME_PATTERN,
