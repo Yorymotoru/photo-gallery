@@ -1,21 +1,19 @@
-@media (min-width: 1280px) and (orientation: landscape) {
-    .grid {
-        --columns: 3;
-        --gap: 1em;
+@media (min-width: 1280px) {
+    .grid-item {
+        width: 32%;
     }
 }
 
 @media (min-width: 800px) and (max-width: 1279px) {
-    .grid {
-        --columns: 2;
-        --gap: 1em;
+    .grid-item {
+        width: 49%;
     }
 }
 
 @media (max-width: 799px) {
-    .grid {
-        --columns: 1;
-        --gap: 1em;
+    .grid-item {
+        width: 100%;
+        padding-bottom: 15px;
     }
 }
 
@@ -48,7 +46,6 @@
 .grid-item {
     break-inside: avoid;
     margin-bottom: var(--gap);
-    width: 32%;
     float: left;
 }
 

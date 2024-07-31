@@ -14,6 +14,7 @@
 
     <div th:replace="~{fragments/head_links.html}"></div>
     <link href="style/my-masonry.css" rel="stylesheet">
+    <link href="style/ellips-loader.css" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
@@ -28,7 +29,7 @@
                             <div class="grid-item" th:each="img: ${listImages}" th:data-height="${img.height}"
                                  th:data-width="${img.width}">
                                 <a target=_blank class="grid-link" th:href="${img.href}">
-                                    <img class="grid-img" th:src="${img.href}" alt=""/>
+                                    <img class="grid-img" th:src="${img.thumbnail}" alt=""/>
                                 </a>
                             </div>
                         </div>
@@ -42,6 +43,16 @@
         </div>
     </div>
 
+    <div class="page-load-status">
+        <div class="loader-ellips infinite-scroll-request">
+            <span class="loader-ellips__dot"></span>
+            <span class="loader-ellips__dot"></span>
+            <span class="loader-ellips__dot"></span>
+            <span class="loader-ellips__dot"></span>
+        </div>
+        <p class="infinite-scroll-last"></p>
+        <p class="infinite-scroll-error"></p>
+    </div>
     <footer th:replace="~{fragments/footer.html}"></footer>
 </div>
 
@@ -52,11 +63,12 @@
     myMasonry();
     window.onresize = myMasonry.resized;
 
-    new InfiniteScroll(document.querySelector('.grid'), {
+    let infiniteScroll = new InfiniteScroll(document.querySelector('.grid'), {
         // options
         path: '.pagination__next',
         append: '.grid-item',
-        history: true,
+        history: false,
+        status: '.page-load-status',
         outlayer: myMasonry
     });
 </script>
@@ -66,7 +78,6 @@
         $('#menu').toggleClass('active');
     });
 </script>
-
 
 </body>
 </html>

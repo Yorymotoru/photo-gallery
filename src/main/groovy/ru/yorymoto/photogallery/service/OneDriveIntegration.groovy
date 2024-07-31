@@ -34,6 +34,13 @@ class OneDriveIntegration {
                 .bodyToMono(OneDriveResponse.class) //TODO: Надо попробовать сгенерировать сокращённую версию
                 .block()
 
+        def thumbnails = webClient
+                .get()
+                .uri(String.join("", "/v1.0/shares/", Constants.GALLERY_THUMBNAILS_FOLDER_ID, "/root?expand=children"))
+                .retrieve()
+                .bodyToMono(OneDriveResponse.class) //TODO: Надо автоматизировать процесс
+                .block()
+
         def out = images.children.collect { it ->
             new ImageForPage(
                     href: it.contentDownloadUrl,
@@ -42,7 +49,8 @@ class OneDriveIntegration {
                             (it.photo.takenDateTime ?: it.createdDateTime).substring(0, 20)
                     ).getTime(),
                     height: it.image.height,
-                    width: it.image.width
+                    width: it.image.width,
+                    thumbnail: thumbnails.children.find(th -> th.name == it.name).contentDownloadUrl
             )
         }
 
