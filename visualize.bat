@@ -1,0 +1,1 @@
+gource -1920x1080 -f --highlight-all-users --multi-sampling .\
