@@ -21,7 +21,6 @@
     <div class="content">
         <header th:replace="~{fragments/header.html}"></header>
         <div class="bodycont">
-            Фоточки с моих прогулок <br><br>
             <div class="main">
                 <div class="container">
                     <div class="row">
@@ -35,7 +34,7 @@
                         </div>
                     </div>
 
-                    <p class="pagination">
+                    <p class="pagination" th:if="${listImages.hasNext()}" >
                         <a class='pagination__next' th:href='${"/" + (listImages.nextPageable().pageNumber + 1)}'></a>
                     </p>
                 </div>

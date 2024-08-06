@@ -1,6 +1,7 @@
 package ru.yorymoto.photogallery.controllers
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.CacheEvict
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Controller
@@ -83,6 +84,12 @@ class IndexController {
     view(Model model, @RequestParam("name") String name) {
         model.addAttribute("image", pageableOneDriveService.getImage(name))
         return "gallery_view_minimal"
+    }
+
+    @RequestMapping(value = "/resetCache", method = RequestMethod.GET)
+    @CacheEvict(cacheNames = "images")
+    resetCache() {
+        return "cache_reset"
     }
 
 }

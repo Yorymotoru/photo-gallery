@@ -55,7 +55,7 @@ class OneDriveIntegration {
             )
         }
 
-        return out
+        return out.sort { a, b -> (a.takenDateTime <=> b.takenDateTime) * -1 }
     }
 
     def getListOfWallpapers() {
